@@ -28,3 +28,17 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./wass
+
+      - name: Build website
+        run: npm run build
+        working-directory: ./wass
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./wass/dist
